@@ -1,9 +1,8 @@
-from pathlib import Path
 from advent_of_code import day_1
 
 
 def print_day_1():
-    input_filepath = Path("advent_of_code/docs/day-1/input.txt")
+    input_filepath = "advent_of_code/docs/day-1/input.txt"
     password_part_one = day_1.get_password_of_part_one(input_filepath)
     password_part_two = day_1.get_password_of_part_two(input_filepath)
 

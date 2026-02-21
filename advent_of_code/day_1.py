@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from enum import Enum
 from pathlib import Path
+from utils.io_actions import read_lines
 
 
 STARTING_POSITION: int = 50
@@ -24,8 +25,8 @@ def parse_line(line: str) -> tuple[Direction, int]:
     return direction, value
 
 
-def get_password(input_filepath: Path, increment_func: Callable[..., int]) -> int:
-    lines = input_filepath.read_text().splitlines()
+def get_password(input_filepath: Path | str, increment_func: Callable[..., int]) -> int:
+    lines = read_lines(input_filepath)
     position = STARTING_POSITION
     counter = 0
     for line in lines:
@@ -45,22 +46,21 @@ def count_if_position_lands_on_zero(position: int, *_) -> int:
 
 def count_rotations(position: int, direction: Direction, value: int) -> int:
     increment = 0
-    if direction == Direction.LEFT and position != 0:
-        increment = ((position - value) * (-1) + DIAL_RANGE) // DIAL_RANGE
-    if direction == Direction.LEFT and position == 0:
+    if direction == Direction.LEFT:
         increment = ((position - value) * (-1)) // DIAL_RANGE
-    if direction == Direction.RIGHT:
+        if position != 0:
+            increment += 1
+    elif direction == Direction.RIGHT:
         increment = (position + value) // DIAL_RANGE
 
-    # print(f"Increment: {increment}, Position: {position}, Direction: {direction}, Value: {value}")
     return increment
 
 
-def get_password_of_part_one(input_filepath: Path) -> int:
+def get_password_of_part_one(input_filepath: Path | str) -> int:
     return get_password(input_filepath, count_if_position_lands_on_zero)
 
 
-def get_password_of_part_two(input_filepath: Path) -> int:
+def get_password_of_part_two(input_filepath: Path | str) -> int:
     return get_password(input_filepath, count_rotations)
 
 
