@@ -1,7 +1,9 @@
 from collections.abc import Callable
 from enum import Enum
 from pathlib import Path
+
 from utils.io_actions import read_lines
+from utils.day import Day
 
 
 STARTING_POSITION: int = 50
@@ -11,6 +13,20 @@ DIAL_RANGE: int = 100
 class Direction(Enum):
     LEFT = "L"
     RIGHT = "R"
+
+
+class DayOne(Day):
+    def __init__(self):
+        super().__init__(
+            number=1,
+            input_filename="advent_of_code/docs/day-1/input.txt"
+        )
+
+    def solve_part_one(self, input_filepath: Path | str) -> int:
+        return get_password(input_filepath, count_if_position_lands_on_zero)
+
+    def solve_part_two(self, input_filepath: Path | str) -> int:
+        return get_password(input_filepath, count_if_position_crosses_zero)
 
 
 def get_position_after_rotation(current_position: int, direction: Direction, value: int) -> int:
@@ -44,7 +60,7 @@ def count_if_position_lands_on_zero(position: int, *_) -> int:
     return 0
 
 
-def count_rotations(position: int, direction: Direction, value: int) -> int:
+def count_if_position_crosses_zero(position: int, direction: Direction, value: int) -> int:
     increment = 0
     if direction == Direction.LEFT:
         increment = ((position - value) * (-1)) // DIAL_RANGE
@@ -61,7 +77,7 @@ def get_password_of_part_one(input_filepath: Path | str) -> int:
 
 
 def get_password_of_part_two(input_filepath: Path | str) -> int:
-    return get_password(input_filepath, count_rotations)
+    return get_password(input_filepath, count_if_position_crosses_zero)
 
 
 if __name__ == "__main__":
