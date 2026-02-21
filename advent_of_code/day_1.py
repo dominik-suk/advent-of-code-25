@@ -6,6 +6,17 @@ from utils.io_actions import read_lines
 from utils.day import Day
 
 
+class DayOne(Day):
+    def __init__(self):
+        super().__init__(number=1)
+
+    def solve_part_one(self, input_filepath: Path | str) -> int:
+        return get_password(input_filepath, count_if_position_lands_on_zero)
+
+    def solve_part_two(self, input_filepath: Path | str) -> int:
+        return get_password(input_filepath, count_if_position_crosses_zero)
+
+
 STARTING_POSITION: int = 50
 DIAL_RANGE: int = 100
 
@@ -13,20 +24,6 @@ DIAL_RANGE: int = 100
 class Direction(Enum):
     LEFT = "L"
     RIGHT = "R"
-
-
-class DayOne(Day):
-    def __init__(self):
-        super().__init__(
-            number=1,
-            input_filename="advent_of_code/docs/day-1/input.txt"
-        )
-
-    def solve_part_one(self, input_filepath: Path | str) -> int:
-        return get_password(input_filepath, count_if_position_lands_on_zero)
-
-    def solve_part_two(self, input_filepath: Path | str) -> int:
-        return get_password(input_filepath, count_if_position_crosses_zero)
 
 
 def get_position_after_rotation(current_position: int, direction: Direction, value: int) -> int:
