@@ -22,6 +22,7 @@ class Day(ABC):
         print("Part 2 Password: {}".format(self.solve_part_two(self.input_filepath)), end="\n\n")
 
     def run_sample(self):
+        print("Sample Input")
         print("Day {}".format(self.number))
         print("Part 1 Password: {}".format(self.solve_part_one(self.sample_filepath)))
         print("Part 2 Password: {}".format(self.solve_part_two(self.sample_filepath)), end="\n\n")
