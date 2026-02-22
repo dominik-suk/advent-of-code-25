@@ -5,3 +5,9 @@ def read_lines(path: Path | str) -> list[str]:
     if isinstance(path, str):
         path = Path(path)
     return path.read_text().splitlines()
+
+
+def read_list(path: Path | str) -> list[str]:
+    if isinstance(path, str):
+        path = Path(path)
+    return path.read_text().split(',')
