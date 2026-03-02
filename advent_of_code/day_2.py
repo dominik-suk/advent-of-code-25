@@ -1,9 +1,9 @@
 from typing import Callable
+from pathlib import Path
 
+from utils.day import Day
 from utils.io_actions import read_list
 
-from pathlib import Path
-from utils.day import Day
 
 class DayTwo(Day):
     def __init__(self):
@@ -23,10 +23,10 @@ def parse_segment(segment) -> tuple[int, int]:
     return first_id, last_id
 
 
-def id_is_valid(product_id: int, found_sequence_func: Callable[[int], bool]) -> bool:
+def id_is_valid(product_id: int, sequence_validator_func: Callable[[int], bool]) -> bool:
     if id_has_leading_zero(product_id):
         return False
-    if found_sequence_func(product_id):
+    if sequence_validator_func(product_id):
         return False
     return True
 
@@ -59,23 +59,22 @@ def id_is_repeated_at_least_twice(product_id: int) -> bool:
 
 
 def sequence_is_repeating(product_id: str, sequence: str) -> bool:
+    if len(product_id) % len(sequence) != 0:
+        return False
     found_sequence = True
     for i in range(len(product_id)):
-        if len(product_id) % len(sequence) != 0:
-            found_sequence = False
-            break
         if product_id[i] != sequence[i % len(sequence)]:
             found_sequence = False
             break
     return found_sequence
 
 
-def get_password(input_filepath: Path | str, found_sequence_func: Callable[[int], bool]) -> int:
+def get_password(input_filepath: Path | str, sequence_validator_func: Callable[[int], bool]) -> int:
     segments = read_list(input_filepath)
     password = 0
     for segment in segments:
         first_id, last_id = parse_segment(segment)
         for product_id in range(first_id, last_id + 1):
-            if not id_is_valid(product_id, found_sequence_func):
+            if not id_is_valid(product_id, sequence_validator_func):
                 password += product_id
     return password
