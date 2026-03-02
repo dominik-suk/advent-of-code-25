@@ -22,7 +22,7 @@ def get_max_joltage_from_line(line: str, batteries_per_bank) -> int:
 
     for i in range(batteries_per_bank):
         batteries_left = batteries[current_index + 1 : len(batteries) - (batteries_per_bank - (i + 1))]
-        battery, partial_index = get_max_and_index(batteries_left)
+        partial_index, battery = get_max_and_index(batteries_left)
         current_index += partial_index + 1
         max_joltage += str(battery)
 
@@ -30,21 +30,11 @@ def get_max_joltage_from_line(line: str, batteries_per_bank) -> int:
 
 
 def get_max_and_index(line: list[int]) -> tuple[int, int]:
-    index = 0
-    highest_value = line[0]
-    for number in range(0, len(line)):
-        if line[number] > highest_value:
-            highest_value = line[number]
-            index = number
-
-    return highest_value, index
+    return max(enumerate(line), key=lambda x: x[1])
 
 
 def line_to_array(line: str) -> list:
-    arr = []
-    for char in line:
-        arr.append(int(char))
-    return arr
+    return [int(c) for c in line]
 
 
 def get_password(input_filepath: Path | str, batteries_per_bank) -> int:
