@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from email import message_from_string
 from pathlib import Path
 
 from utils.io_actions import measure_latency_of_function, measure_average_latency_of_function
@@ -41,5 +40,5 @@ class Day(ABC):
         print("Day {}".format(self.number))
         time_taken = measure_average_latency_of_function(self.solve_part_one, self.input_filepath, n=n)
         print("Time taken for part 1: {} seconds".format(time_taken), end="\n\n")
-        time_taken = measure_latency_of_function(self.solve_part_two, self.input_filepath)
+        time_taken = measure_average_latency_of_function(self.solve_part_two, self.input_filepath, n=n)
         print("Time taken for part 2: {} seconds".format(time_taken), end="\n\n")
