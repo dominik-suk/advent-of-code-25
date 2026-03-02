@@ -65,11 +65,3 @@ def count_if_position_crosses_zero(position: int, direction: Direction, value: i
             return -(position - value) // DIAL_RANGE + 1
     else:
         return (position + value) // DIAL_RANGE
-
-
-def get_password_of_part_one(input_filepath: Path | str) -> int:
-    return get_password(input_filepath, count_if_position_lands_on_zero)
-
-
-def get_password_of_part_two(input_filepath: Path | str) -> int:
-    return get_password(input_filepath, count_if_position_crosses_zero)
