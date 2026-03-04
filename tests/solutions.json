@@ -1,0 +1,18 @@
+{
+  "day 1": {
+    "part 1": {"sample": "3",             "input": "1078"},
+    "part 2": {"sample": "6",             "input": "6412"}
+  },
+  "day 2": {
+    "part 1": {"sample": "1227775554",    "input": "28846518423"},
+    "part 2": {"sample": "4174379265",    "input": "31578210022"}
+  },
+  "day 3": {
+    "part 1": {"sample": "357",           "input": "17113"},
+    "part 2": {"sample": "3121910778619", "input": "169709990062889"}
+  },
+  "day 4": {
+    "part 1": {"sample": "13",            "input": "1389"},
+    "part 2": {"sample": "43",            "input": "9000"}
+  }
+}

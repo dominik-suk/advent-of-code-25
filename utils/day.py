@@ -11,12 +11,24 @@ class Day(ABC):
         self.sample_filepath: Path | str = "advent_of_code/docs/day-{}/sample.txt".format(self.number)
 
     @abstractmethod
-    def solve_part_one(self, input_filename: Path | str) -> str:
+    def solve_part_one(self, input_filename: Path | str) -> int:
         pass
 
     @abstractmethod
-    def solve_part_two(self, input_filename: Path | str) -> str:
+    def solve_part_two(self, input_filename: Path | str) -> int:
         pass
+
+    def solve(self) -> dict[str, dict[str, str]]:
+        return {
+            "part 1": {
+                "sample": str(self.solve_part_one(self.sample_filepath)),
+                "input":  str(self.solve_part_one(self.input_filepath)),
+            },
+            "part 2": {
+                "sample": str(self.solve_part_two(self.sample_filepath)),
+                "input":  str(self.solve_part_two(self.input_filepath)),
+            }
+        }
 
     def run(self):
         print("Day {}".format(self.number))
