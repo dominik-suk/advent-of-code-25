@@ -22,14 +22,14 @@ def get_max_joltage_from_line(line: str, batteries_per_bank) -> int:
 
     for i in range(batteries_per_bank):
         batteries_left = batteries[current_index + 1 : len(batteries) - (batteries_per_bank - (i + 1))]
-        partial_index, battery = get_max_and_index(batteries_left)
+        partial_index, battery = get_index_and_max(batteries_left)
         current_index += partial_index + 1
         max_joltage += str(battery)
 
     return int(max_joltage)
 
 
-def get_max_and_index(line: list[int]) -> tuple[int, int]:
+def get_index_and_max(line: list[int]) -> tuple[int, int]:
     return max(enumerate(line), key=lambda x: x[1])
 
 
