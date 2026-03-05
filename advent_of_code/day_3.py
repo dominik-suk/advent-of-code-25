@@ -15,15 +15,16 @@ class DayThree(Day):
         return get_password(input_filepath, batteries_per_bank=12)
 
 
-def get_max_joltage_from_line(line: str, batteries_per_bank) -> int:
+def get_max_joltage_from_line(line: str, batteries_to_turn_on_per_bank: int) -> int:
     batteries = line_to_array(line)
     max_joltage = ""
     current_index = -1
 
-    for i in range(batteries_per_bank):
-        batteries_left = batteries[current_index + 1 : len(batteries) - (batteries_per_bank - (i + 1))]
-        partial_index, battery = get_index_and_max(batteries_left)
-        current_index += partial_index + 1
+    for current_battery_number in range(1, batteries_to_turn_on_per_bank + 1):
+        number_of_batteries_left_to_turn_on = len(batteries) - batteries_to_turn_on_per_bank + current_battery_number
+        batteries_left = batteries[current_index + 1 : number_of_batteries_left_to_turn_on]
+        battery_index, battery = get_index_and_max(batteries_left)
+        current_index += battery_index + 1
         max_joltage += str(battery)
 
     return int(max_joltage)
@@ -37,7 +38,7 @@ def line_to_array(line: str) -> list:
     return [int(c) for c in line]
 
 
-def get_password(input_filepath: Path | str, batteries_per_bank) -> int:
+def get_password(input_filepath: Path | str, batteries_per_bank: int) -> int:
     lines = read_lines(input_filepath)
     total_joltage = 0
     for line in lines:
