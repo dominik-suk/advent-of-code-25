@@ -14,5 +14,37 @@
   "day 4": {
     "part 1": {"sample": "13",            "input": "1389"},
     "part 2": {"sample": "43",            "input": "9000"}
+  },
+  "day 5": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 6": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 7": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 8": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 9": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 10": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 11": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
+  },
+  "day 12": {
+    "part 1": {"sample": null,              "input": null},
+    "part 2": {"sample": null,              "input": null}
   }
 }

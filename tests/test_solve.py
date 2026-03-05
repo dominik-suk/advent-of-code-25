@@ -1,7 +1,6 @@
 import json
-from pathlib import Path
-
 import pytest
+from pathlib import Path
 
 from advent_of_code import *
 
@@ -17,30 +16,26 @@ class TestSolve:
         result = DayOne().solve()
         assert result["part 1"]["sample"] == solutions["day 1"]["part 1"]["sample"]
         assert result["part 2"]["sample"] == solutions["day 1"]["part 2"]["sample"]
-        if "input" in solutions["day 1"]:
-            assert result["part 1"]["input"]  == solutions["day 1"]["part 1"]["input"]
-            assert result["part 2"]["input"]  == solutions["day 1"]["part 2"]["input"]
+        assert result["part 1"]["input"]  == solutions["day 1"]["part 1"]["input"]
+        assert result["part 2"]["input"]  == solutions["day 1"]["part 2"]["input"]
 
     def test_day_two(self, solutions):
         result = DayTwo().solve()
         assert result["part 1"]["sample"] == solutions["day 2"]["part 1"]["sample"]
         assert result["part 2"]["sample"] == solutions["day 2"]["part 2"]["sample"]
-        if "input" in solutions["day 2"]:
-            assert result["part 1"]["input"]  == solutions["day 2"]["part 1"]["input"]
-            assert result["part 2"]["input"]  == solutions["day 2"]["part 2"]["input"]
+        assert result["part 1"]["input"]  == solutions["day 2"]["part 1"]["input"]
+        assert result["part 2"]["input"]  == solutions["day 2"]["part 2"]["input"]
 
     def test_day_three(self, solutions):
         result = DayThree().solve()
         assert result["part 1"]["sample"] == solutions["day 3"]["part 1"]["sample"]
         assert result["part 2"]["sample"] == solutions["day 3"]["part 2"]["sample"]
-        if "input" in solutions["day 3"]:
-            assert result["part 1"]["input"]  == solutions["day 3"]["part 1"]["input"]
-            assert result["part 2"]["input"]  == solutions["day 3"]["part 2"]["input"]
+        assert result["part 1"]["input"]  == solutions["day 3"]["part 1"]["input"]
+        assert result["part 2"]["input"]  == solutions["day 3"]["part 2"]["input"]
 
     def test_day_four(self, solutions):
         result = DayFour().solve()
         assert result["part 1"]["sample"] == solutions["day 4"]["part 1"]["sample"]
         assert result["part 2"]["sample"] == solutions["day 4"]["part 2"]["sample"]
-        if "input" in solutions["day 4"]:
-            assert result["part 1"]["input"]  == solutions["day 4"]["part 1"]["input"]
-            assert result["part 2"]["input"]  == solutions["day 4"]["part 2"]["input"]
+        assert result["part 1"]["input"]  == solutions["day 4"]["part 1"]["input"]
+        assert result["part 2"]["input"]  == solutions["day 4"]["part 2"]["input"]
