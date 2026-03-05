@@ -24,7 +24,7 @@ class Symbols(Enum):
 
 
 def lines_to_2d_array(lines: list[str]) -> list[list[str]]:
-    return [[c for c in line] for line in lines]
+    return [list(line) for line in lines]
 
 
 def count_neighbors(grid: list[list[str]], tile: tuple[int, int]) -> int:
@@ -33,7 +33,7 @@ def count_neighbors(grid: list[list[str]], tile: tuple[int, int]) -> int:
         for col in range(max(tile[1] - 1, 0), min(tile[1] + 2, len(grid[row]))):
             if row == tile[0] and col == tile[1]:
                 continue
-            if Symbols(grid[row][col]) == Symbols.PAPER_ROLL:
+            if grid[row][col] == Symbols.PAPER_ROLL.value:
                 neighbors += 1
     return neighbors
 
@@ -43,13 +43,19 @@ def get_modified_grid_and_accessible_rolls_count(grid: list[list[str]]) -> tuple
     accessible_rolls = 0
     for row in range(len(grid)):
         for col in range(len(grid[row])):
-            if Symbols(grid[row][col]) == Symbols.EMPTY_SPACE:
-                continue
-            if count_neighbors(grid, tile=(row, col)) < 4:
+            if tile_is_occupied(grid, tile=(row, col)) and roll_is_accessible(grid, tile=(row, col)):
                 accessible_rolls += 1
                 new_grid[row][col] = Symbols.EMPTY_SPACE.value
-
     return new_grid, accessible_rolls
+
+
+def tile_is_occupied(grid: list[list[str]], tile: tuple[int, int]) -> bool:
+    row, col = tile[0], tile[1]
+    return grid[row][col] != Symbols.EMPTY_SPACE.value
+
+
+def roll_is_accessible(grid: list[list[str]], tile: tuple[int, int]) -> bool:
+    return count_neighbors(grid, tile) < 4
 
 
 def count_currently_accessible_rolls(grid: list[list[str]]) -> int:
@@ -66,7 +72,7 @@ def count_all_accessible_rolls(grid: list[list[str]]) -> int:
             end_reached = True
         else:
             all_accessible_rolls += current_accessible_rolls
-            current_grid = copy.deepcopy(modified_grid)
+            current_grid = modified_grid
     return all_accessible_rolls
 
 
