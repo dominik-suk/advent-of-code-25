@@ -23,12 +23,12 @@ def parse_segment(segment) -> tuple[int, int]:
     return first_id, last_id
 
 
-def id_is_valid(product_id: int, sequence_validator_func: Callable[[int], bool]) -> bool:
+def id_is_invalid(product_id: int, sequence_validator_func: Callable[[int], bool]) -> bool:
     if id_has_leading_zero(product_id):
-        return False
+        return True
     if sequence_validator_func(product_id):
-        return False
-    return True
+        return True
+    return False
 
 
 def id_has_odd_length(product_id: int) -> bool:
@@ -75,6 +75,6 @@ def get_password(input_filepath: Path | str, sequence_validator_func: Callable[[
     for segment in segments:
         first_id, last_id = parse_segment(segment)
         for product_id in range(first_id, last_id + 1):
-            if not id_is_valid(product_id, sequence_validator_func):
+            if id_is_invalid(product_id, sequence_validator_func):
                 password += product_id
     return password
