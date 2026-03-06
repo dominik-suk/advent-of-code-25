@@ -18,15 +18,15 @@ class Day(ABC):
     def solve_part_two(self, input_filename: Path | str) -> int:
         pass
 
-    def solve(self) -> dict[str, dict[str, str]]:
+    def solve(self) -> dict[str, dict[str, int]]:
         return {
             "part 1": {
-                "sample": str(self.solve_part_one(self.sample_filepath)),
-                "input":  str(self.solve_part_one(self.input_filepath)),
+                "sample": self.solve_part_one(self.sample_filepath),
+                "input":  self.solve_part_one(self.input_filepath),
             },
             "part 2": {
-                "sample": str(self.solve_part_two(self.sample_filepath)),
-                "input":  str(self.solve_part_two(self.input_filepath)),
+                "sample": self.solve_part_two(self.sample_filepath),
+                "input":  self.solve_part_two(self.input_filepath),
             }
         }
 
